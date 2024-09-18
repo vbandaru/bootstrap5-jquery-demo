@@ -26,6 +26,9 @@
             <div class="collapse navbar-collapse" id="navigation">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#login" data-page="login.html">Login</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#" data-page="users.html">Users</a>
                     </li>
                     <li class="nav-item">
@@ -59,18 +62,22 @@
     <!--jQuery-->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
-
+    <script type="text/javascript" src="common.js"></script>
     <script>
+
         $(document).ready(function () {
             console.log('DOM loaded');
 
             $('#page-content').load('home.html');
 
-            $("nav a").on('click', function(){
+            $("nav a").on('click', function () {
                 let page = $(this).data('page');
-                console.log('page',page);
-                $('#page-content').load(page);
+                console.log('page', page);
+                $('#page-content').empty();
+                showLoading();
+                $('#page-content').load(page, function () {
+                    hideLoading();
+                });
             });
         });
 

@@ -39,6 +39,8 @@
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 console.log(`request failed with status : ${xhr.status}, underlying error: ${xhr.responseText}`);
+                showAlert('error', 'Error fetching users at this time. Please try again later!');
+
             },
 
         });

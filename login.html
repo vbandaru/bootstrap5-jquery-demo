@@ -1,0 +1,62 @@
+<h2>Login</h2>
+
+<form id="login-form">
+    <div class="mb-3">
+        <label for="username" class="form-label">User Name</label>
+        <input type="text" class="form-control" name="username" id="username">
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" name="password" id="password">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+<script>
+    $(document).ready(function () {
+        console.log('Users loaded');
+        $('#login-form').on('submit', function (event) {
+            event.preventDefault();  //prevent calling form  action
+
+            let formData = {
+                username: $('#username').val(),
+                password: $('#password').val()
+            }
+            console.log('form submitted', formData);
+
+            // $.ajax({
+            //     url: "https://reqres.in/api/users",
+            //     type: 'POST',
+            //     data: JSON.stringify(formData),
+            //     success: function (response) {
+            //         showAlert('success', `User ${formData.name} Created!`);
+            //     },
+            //     error: function (xhr, ajaxOptions, thrownError) {
+            //         console.log(`request failed with status : ${xhr.status}, underlying error: ${xhr.responseText}`);
+            //         showAlert('error', 'User Creation failed. Please try again later!');
+            //     },
+            // });
+
+            if (formData.username == 'admin') {
+                localStorage.setItem("login", JSON.stringify({
+                    role_id: 2,
+                    user_id: 1,
+                    user_name: formData.username
+                }));
+            } else {
+                localStorage.setItem("login", JSON.stringify({
+                    role_id: 2,
+                    user_id: 2,
+                    user_name: formData.username
+                }));
+            }
+
+
+            //verify if local storage is set
+            let login = localStorage.getItem('login');
+            console.log('localstorage upated with:', JSON.parse(login));
+        });
+    });
+</script>
