@@ -1,0 +1,52 @@
+<h2>Create User</h2>
+
+<form id="create-user-form">
+    <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" name="name" id="name">
+    </div>
+    <div class="mb-3">
+        <label for="job" class="form-label">Job</label>
+        <input type="text" class="form-control" name="job" id="job">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+<script>
+    $(document).ready(function () {
+        console.log('Users loaded');
+
+        $('#create-user-form').on('submit', function (event) {
+            event.preventDefault();  //prevent calling form  action
+
+            let formData = {
+                name: $('#name').val(),
+                name: $('#job').val()
+            }
+            console.log('form submitted', formData);
+
+            $.ajax({
+                url: "https://reqres.in/api/users",
+                type: 'POST',
+                data: JSON.stringify(formData),
+                success: function (response) {
+                    $('#alerts').html(`
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            User created!
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    `);
+
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    console.log(`request failed with status : ${xhr.status}, underlying error: ${xhr.responseText}`);
+                },
+
+            });
+
+        });
+    });
+
+</script>
