@@ -31,7 +31,7 @@
                 type: 'POST',
                 data: JSON.stringify(formData),
                 success: function (response) {
-                    showAlert('success', `User ${formData.name} Created!`);
+                    showAlert('success', `User ${formData.name} Created! This is awesome.... ${formData.job}`);
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     console.log(`request failed with status : ${xhr.status}, underlying error: ${xhr.responseText}`);
