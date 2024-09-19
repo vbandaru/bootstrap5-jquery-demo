@@ -41,7 +41,7 @@
 
             if (formData.username == 'admin') {
                 localStorage.setItem("login", JSON.stringify({
-                    role_id: 2,
+                    role_id: 1,
                     user_id: 1,
                     user_name: formData.username
                 }));
@@ -53,10 +53,8 @@
                 }));
             }
 
+            setupNavigation();
 
-            //verify if local storage is set
-            let login = localStorage.getItem('login');
-            console.log('localstorage upated with:', JSON.parse(login));
         });
     });
 </script>
